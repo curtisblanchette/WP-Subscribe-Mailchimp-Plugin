@@ -1,0 +1,1 @@
+$(document).ready(function(){$("#subscribe").submit(function(){return $("#response").html("Adding email address..."),$.ajax({url:"inc/store-address.php",data:"ajax=true&email="+escape($("#email").val()),success:function(e){$("#response").html(e)}}),!1})});
