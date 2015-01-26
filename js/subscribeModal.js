@@ -16,37 +16,39 @@ jQuery(document).ready(function($) {
 		//center the modal
 		method.center = function () {
 		    var top, left;
-
 		    top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
 		    left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
-
+		    
 		    $modal.css({
 		        top:top + $(window).scrollTop(), 
 		        left:left + $(window).scrollLeft(),
 		        height: $(window).height()
 		    });
-
 		};
 
 		//open the Modal
 		method.open = function(settings) {
+			// empty the container and append the new content
 			$content.empty().append(settings.content);
+			// set the modals width, height and top
 			$modal.css({
 				width: settings.width || '100%',
-				height: settings.height || '100%'
+				height: settings.height || '100%',
+				top: '0'
 			});
-			$modal.css('top', '0');
-
+			// center the modal and bind it to resize
 			method.center();
 			$(window).bind('resize.modal', method.center);
-
+			// add the blur class to the wrapper
 			$('#thmlvContent').addClass('blur');
+			// fade out the envelope
 			$('.subscribeToggle').css('opacity', 0);
 			disable_scroll();
 		};
 
 		//close the modal 
 		method.close = function() {
+			// set modals position out of view
 			$modal.css('top', '-100%');
 			//$content.empty();
 			$(window).unbind('resize.modal');
@@ -79,7 +81,7 @@ jQuery(document).ready(function($) {
 
 	var $subHeader = "<h1 class='subscribe-head'>" + $var_1 + "</h1>",
 		$subBody = "<p class='subscribe-body'>" + $var_2 + "</p>",
-		$subForm = "<form class='subscribe-form' id='subscribe' name='mc-embedded-subscribe-form' action='"+self.location.href+"' method='get'><span id='response'><? require_once('mailchimp-api/inc/store-address.php'); if($_GET['submit']){ echo storeAddress(); } ?></span><input type='email' id='email' name='email' style='width:75%; margin-right:5%;' placeholder='Email Address' name='email'/><input name='submit' type='submit' style='width:20%;' value='Subscribe'/></form>";
+		$subForm = "<form class='subscribe-form' id='subscribe' name='mc-embedded-subscribe-form' action='#' method='get'><span id='response'><? require_once('mailchimp-api/inc/store-address.php'); if($_GET['submit']){ echo storeAddress(); } ?></span><input type='email' id='email' name='email' style='width:75%; margin-right:5%;' placeholder='Email Address' name='email'/><input name='submit' type='submit' style='width:20%;' value='Subscribe'/></form>";
 
 	$('.subscribeToggle').click(function(e){
 		modal.open({content: $subHeader + $subBody + $subForm});
@@ -91,9 +93,10 @@ jQuery(document).ready(function($) {
 			e.preventDefault();
 			$('#response').html('Adding email address...');
 			
+
 			// Prepare query string and send AJAX request
 			$.ajax({
-				url: 'wp-content/plugins/curts-modal-overlay/mailchimp-api/inc/store-address.php',
+				url: 'http://localhost:8888/politik.io/wp-content/plugins/curts-modal-overlay/mailchimp-api/inc/store-address.php',
 				data: 'ajax=true&email=' + escape($('#email').val()),
 				success: function(msg) {
 					$('#response').html(msg);
@@ -108,7 +111,7 @@ jQuery(document).ready(function($) {
 	// Helper functions to disable scrolling
 	// left: 37, up: 38, right: 39, down: 40,
 	// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-	var keys = [37, 38, 39, 40];
+	var keys = [38,  40];
 
 	function preventDefault(e) {
 	  e = e || window.event;
