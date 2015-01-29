@@ -15,6 +15,8 @@ if ($api->errorCode){
 	echo "Unable to load MailChimp Subscribers!";
 	echo "Make sure your API Key and List ID are Correct.";
 } else {
+	echo '<h4>Subscribers</h4>';
+	echo '<hr/>';
 	echo '<table class="wp-list-table widefat fixed" id="subListTable" style="max-width:768px;">';
 	echo '<thead>';
 	echo '<th>Subscribers</th>';
