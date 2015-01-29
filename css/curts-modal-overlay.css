@@ -57,3 +57,6 @@
   -webkit-filter: blur(20px);
           filter: blur(20px);
 }
+#subListTable_wrapper {
+  max-width: 768px;
+}

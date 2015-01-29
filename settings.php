@@ -1,5 +1,7 @@
-<?php 
-session_start();
+<?php
+if(session_id() == '') {
+	session_start();	
+}
 require_once('mailchimp-api/inc/MCAPI.class.php');
 ?>
 
@@ -45,6 +47,8 @@ require_once('mailchimp-api/inc/MCAPI.class.php');
 		</table>
 		
 	</form>
+
 	<?php include('mailchimp-api/inc/get-list.php'); ?>
+	
 
 </div>

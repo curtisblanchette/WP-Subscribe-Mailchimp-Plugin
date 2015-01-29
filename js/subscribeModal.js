@@ -75,9 +75,10 @@ jQuery(document).ready(function($) {
 
 		return method;
 	}());
-	
+
 	var $var_1 = curts_vars.setting_1,
-		$var_2 = curts_vars.setting_2;
+		$var_2 = curts_vars.setting_2,
+		$plugin_url = curts_vars.plugin_url;
 
 	var $subHeader = "<h1 class='subscribe-head'>" + $var_1 + "</h1>",
 		$subBody = "<p class='subscribe-body'>" + $var_2 + "</p>",
@@ -92,11 +93,10 @@ jQuery(document).ready(function($) {
 			// update user interface
 			e.preventDefault();
 			$('#response').html('Adding email address...');
-			
 
 			// Prepare query string and send AJAX request
 			$.ajax({
-				url: 'http://dev1.politik.io/wp-content/plugins/curts-modal-overlay/mailchimp-api/inc/store-address.php',
+				url: $plugin_url + '/curts-modal-overlay/mailchimp-api/inc/store-address.php',
 				data: 'ajax=true&email=' + escape($('#email').val()),
 				success: function(msg) {
 					$('#response').html(msg);
@@ -107,6 +107,7 @@ jQuery(document).ready(function($) {
 		});
 
 	});
+	
 
 	// Helper functions to disable scrolling
 	// left: 37, up: 38, right: 39, down: 40,

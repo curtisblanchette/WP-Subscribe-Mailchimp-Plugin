@@ -39,7 +39,7 @@ if(!class_exists('Curts_Modal_Overlay')) {
 			// hook into the admin_init and admin_menu actions
 			add_action('admin_init', array(&$this, 'admin_init'));
 			add_action('admin_menu', array(&$this, 'add_menu'));
-
+			
 			
 		}
 
@@ -48,10 +48,14 @@ if(!class_exists('Curts_Modal_Overlay')) {
 		 */
 		public function enqueueAssets() {
 
+
+			$plugins_url = plugins_url();
+
 			// store the variables to be passed to the script
 			$script_vars = array(
 				'setting_1' => get_option('modal_heading'),
 				'setting_2' => get_option('modal_content'),
+				'plugin_url' => $plugins_url,
 			);
 
 		    wp_enqueue_script('curts_modal_overlay', plugins_url('js/subscribeModal.js', __FILE__), array( 'jquery' ), '', true);
@@ -80,6 +84,8 @@ if(!class_exists('Curts_Modal_Overlay')) {
 		public function admin_init() {
 			// set up the settings for this plugin
 			$this->init_settings();
+			wp_register_script('curts_modal_overlay_settings', plugins_url('js/settingsPage.js', __FILE__) );
+			wp_enqueue_script('curts_modal_overlay_settings', plugins_url('js/settingsPage.js', __FILE__), array( 'jquery' ), '', true);
 		}
 
 		/**
