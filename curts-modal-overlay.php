@@ -23,7 +23,9 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-session_start();
+if(session_id()==''){
+	session_start();
+}
 if(!class_exists('Curts_Modal_Overlay')) {
 
 	class Curts_Modal_Overlay {
@@ -54,7 +56,7 @@ if(!class_exists('Curts_Modal_Overlay')) {
 
 		    wp_enqueue_script('curts_modal_overlay', plugins_url('js/subscribeModal.js', __FILE__), array( 'jquery' ), '', true);
 		    wp_localize_script('curts_modal_overlay', 'curts_vars', $script_vars);
-		    wp_register_script('curts_modal_overlay');
+		    wp_register_script('curts_modal_overlay', plugins_url('js/subscribeModal.js', __FILE__) );
 
 		}
 

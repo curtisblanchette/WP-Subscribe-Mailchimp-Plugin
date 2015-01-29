@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 		    var top, left;
 		    top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
 		    left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
-		    
+
 		    $modal.css({
 		        top:top + $(window).scrollTop(), 
 		        left:left + $(window).scrollLeft(),
@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
 
 			// Prepare query string and send AJAX request
 			$.ajax({
-				url: 'http://localhost:8888/politik.io/wp-content/plugins/curts-modal-overlay/mailchimp-api/inc/store-address.php',
+				url: 'http://dev1.politik.io/wp-content/plugins/curts-modal-overlay/mailchimp-api/inc/store-address.php',
 				data: 'ajax=true&email=' + escape($('#email').val()),
 				success: function(msg) {
 					$('#response').html(msg);
